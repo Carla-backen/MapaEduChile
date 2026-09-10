@@ -1,0 +1,70 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="esp"
+
+<head>
+    <meta charset= "UTF-8">
+    <title>MapaEdu Chile</title>
+    <link rel="stylesheet" href="{% static 'recursosApp/css/estilos.css' %}">
+
+</head>
+
+
+<body>
+
+    <header>
+        <h1>MapaEdu Chile</h1>
+        <p>Encuentra recursos educativos disponibles en Chile</p>
+    </header>
+
+    <main class="contenedor">
+
+        <h2>Recursos educativos disponibles</h2>
+
+        {% for recurso in recursos %}
+
+            <div class="recurso">
+
+                <h3>{{ recurso.nombre }}</h3>
+
+                <p>
+                    <strong>Descripción:</strong>
+                    {{ recurso.descripcion }}
+                </p>
+
+                <p>
+                    <strong>Región:</strong>
+                    {{ recurso.region }}
+                </p>
+
+                <p>
+                    <strong>Comuna:</strong>
+                    {{ recurso.comuna }}
+                </p>
+
+                <p>
+                    <strong>Categoría:</strong>
+                    {{ recurso.categoria }}
+                </p>
+
+                {% if recurso.gratuito %}
+                    <p><strong>Gratuito:</strong> Sí</p>
+                {% else %}
+                    <p><strong>Gratuito:</strong> No</p>
+                {% endif %}
+
+            </div>
+
+        {% empty %}
+
+            <p>No hay recursos educativos disponibles.</p>
+
+        {% endfor %}
+
+    </main>
+
+</body>
+
+    
+</html>
