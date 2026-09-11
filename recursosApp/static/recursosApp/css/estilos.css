@@ -1,9 +1,18 @@
+/* =========================================
+   ESTILOS GENERALES
+========================================= */
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f6f8;
     margin: 0;
     padding: 0;
 }
+
+
+/* =========================================
+   ENCABEZADO
+========================================= */
 
 header {
     background-color: #2c6e8f;
@@ -12,19 +21,292 @@ header {
     text-align: center;
 }
 
+header h1 {
+    margin: 0;
+}
+
+header p {
+    margin-top: 10px;
+}
+
+
+/* =========================================
+   CONTENEDOR PRINCIPAL
+========================================= */
+
 .contenedor {
     width: 80%;
     margin: 30px auto;
 }
+
+
+/* =========================================
+   TARJETAS DE RECURSOS
+========================================= */
 
 .recurso {
     background-color: white;
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 10px;
+
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 .recurso h3 {
     color: #2c6e8f;
+    margin-top: 0;
+}
+
+.recurso p {
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   BUSCADOR
+========================================= */
+
+.form-busqueda {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.form-busqueda input {
+    flex: 1;
+
+    padding: 12px;
+
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+
+    font-size: 16px;
+}
+
+.form-busqueda button {
+    background-color: #2c6e8f;
+    color: white;
+
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.form-busqueda button:hover {
+    background-color: #245a75;
+}
+
+
+/* =========================================
+   CONTENEDOR DE BOTONES
+========================================= */
+
+.acciones {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+
+/* =========================================
+   BOTÓN EDITAR
+========================================= */
+
+.btn-editar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 90px;
+    height: 40px;
+
+    background-color: #2c6e8f;
+    color: white;
+
+    border: none;
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+}
+
+.btn-editar:hover {
+    background-color: #245a75;
+}
+
+
+/* =========================================
+   FORMULARIO ELIMINAR
+========================================= */
+
+.form-eliminar {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* =========================================
+   BOTÓN ELIMINAR
+========================================= */
+
+.btn-eliminar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 90px;
+    height: 40px;
+
+    background-color: #dc3545;
+    color: white;
+
+    border: none;
+    border-radius: 8px;
+
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+}
+
+.btn-eliminar:hover {
+    background-color: #b02a37;
+}
+
+
+/* =========================================
+   FORMULARIO EDITAR RECURSO
+========================================= */
+
+.form-editar {
+    display: flex;
+    flex-direction: column;
+
+    max-width: 600px;
+
+    margin: 30px auto;
+    padding: 30px;
+
+    background-color: white;
+
+    border-radius: 12px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+
+/* ETIQUETAS DEL FORMULARIO */
+
+.form-editar label {
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+
+/* CAMPOS DE TEXTO */
+
+.form-editar input[type="text"] {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 12px;
+    margin-bottom: 15px;
+
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+
+    font-size: 16px;
+}
+
+
+/* CHECKBOX GRATUITO */
+
+.form-editar input[type="checkbox"] {
+    width: auto;
+    margin-bottom: 20px;
+}
+
+
+/* BOTÓN GUARDAR CAMBIOS */
+
+.form-editar button {
+    background-color: #2c6e8f;
+    color: white;
+
+    border: none;
+
+    padding: 12px 20px;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+.form-editar button:hover {
+    background-color: #245a75;
+}
+
+
+/* BOTÓN CANCELAR */
+
+.form-editar a {
+    display: block;
+
+    margin-top: 15px;
+
+    text-align: center;
+
+    color: #2c6e8f;
+
+    text-decoration: none;
+}
+
+.form-editar a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================
+   ADAPTACIÓN PARA CELULARES
+========================================= */
+
+@media (max-width: 600px) {
+
+    .contenedor {
+        width: 90%;
+    }
+
+    .form-busqueda {
+        flex-direction: column;
+    }
+
+    .acciones {
+        flex-direction: row;
+    }
+
+}
+
+/* TÍTULO EDITAR RECURSO */
+
+.titulo-editar {
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    color: #222;
 }

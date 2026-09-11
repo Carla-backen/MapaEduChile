@@ -1,0 +1,91 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Editar recurso</title>
+    <link rel="stylesheet" href="{% static 'recursosApp/css/estilos.css' %}">
+</head>
+
+<body>
+
+    <main class="contenedor">
+
+        <h1 class="titulo-editar">Editar recurso educativo</h1>
+
+        <form method="POST" class="form-editar">
+
+            {% csrf_token %}
+
+            <label for="nombre">Nombre:</label>
+            <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                value="{{ recurso.nombre }}"
+                required
+            >
+
+            <label for="descripcion">Descripción:</label>
+            <input
+                type="text"
+                id="descripcion"
+                name="descripcion"
+                value="{{ recurso.descripcion }}"
+                required
+            >
+
+            <label for="region">Región:</label>
+            <input
+                type="text"
+                id="region"
+                name="region"
+                value="{{ recurso.region }}"
+                required
+            >
+
+            <label for="comuna">Comuna:</label>
+            <input
+                type="text"
+                id="comuna"
+                name="comuna"
+                value="{{ recurso.comuna }}"
+                required
+            >
+
+            <label for="categoria">Categoría:</label>
+            <input
+                type="text"
+                id="categoria"
+                name="categoria"
+                value="{{ recurso.categoria }}"
+                required
+            >
+
+            <div>
+                <input
+                    type="checkbox"
+                    id="gratuito"
+                    name="gratuito"
+                    {% if recurso.gratuito %}checked{% endif %}
+                >
+                <label for="gratuito">Gratuito</label>
+            </div>
+
+            <button type="submit">
+                Guardar cambios
+            </button>
+
+            <a href="{% url 'inicio' %}">
+                Cancelar
+            </a>
+
+        </form>
+
+    </main>
+
+</body>
+
+</html>

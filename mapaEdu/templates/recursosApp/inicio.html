@@ -1,60 +1,137 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="esp"
+<html lang="es">
 
 <head>
-    <meta charset= "UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>MapaEdu Chile</title>
+
     <link rel="stylesheet" href="{% static 'recursosApp/css/estilos.css' %}">
-
 </head>
-
 
 <body>
 
+    <!-- ENCABEZADO -->
     <header>
         <h1>MapaEdu Chile</h1>
         <p>Encuentra recursos educativos disponibles en Chile</p>
     </header>
 
+
+    <!-- CONTENIDO PRINCIPAL -->
     <main class="contenedor">
 
         <h2>Recursos educativos disponibles</h2>
 
+
+        <!-- BUSCADOR -->
+        <form method="GET" class="form-busqueda">
+
+            <input
+                type="text"
+                name="busqueda"
+                placeholder="Buscar por comuna..."
+                value="{{ busqueda|default:'' }}"
+            >
+
+            <button type="submit">
+                Buscar
+            </button>
+
+        </form>
+
+
+        <!-- LISTA DE RECURSOS -->
         {% for recurso in recursos %}
 
             <div class="recurso">
 
+                <!-- NOMBRE -->
                 <h3>{{ recurso.nombre }}</h3>
 
+
+                <!-- DESCRIPCIÓN -->
                 <p>
                     <strong>Descripción:</strong>
                     {{ recurso.descripcion }}
                 </p>
 
+
+                <!-- REGIÓN -->
                 <p>
                     <strong>Región:</strong>
                     {{ recurso.region }}
                 </p>
 
+
+                <!-- COMUNA -->
                 <p>
                     <strong>Comuna:</strong>
                     {{ recurso.comuna }}
                 </p>
 
+
+                <!-- CATEGORÍA -->
                 <p>
                     <strong>Categoría:</strong>
                     {{ recurso.categoria }}
                 </p>
 
+
+                <!-- GRATUITO -->
                 {% if recurso.gratuito %}
-                    <p><strong>Gratuito:</strong> Sí</p>
+
+                    <p>
+                        <strong>Gratuito:</strong> Sí
+                    </p>
+
                 {% else %}
-                    <p><strong>Gratuito:</strong> No</p>
+
+                    <p>
+                        <strong>Gratuito:</strong> No
+                    </p>
+
                 {% endif %}
 
+
+                <!-- BOTONES -->
+                <div class="acciones">
+
+                    <!-- EDITAR -->
+                    <a
+                        href="{% url 'editar_recurso' recurso.id %}"
+                        class="btn-editar"
+                    >
+                        Editar
+                    </a>
+
+
+                    <!-- ELIMINAR -->
+                    <form
+                        method="POST"
+                        action="{% url 'eliminar_recurso' recurso.id %}"
+                        onsubmit="return confirm('¿Estás segura de que quieres eliminar este recurso?');"
+                        class="form-eliminar"
+                    >
+
+                        {% csrf_token %}
+
+                        <button
+                            type="submit"
+                            class="btn-eliminar"
+                        >
+                            Eliminar
+                        </button>
+
+                    </form>
+
+                </div>
+
             </div>
+
 
         {% empty %}
 
@@ -66,5 +143,4 @@
 
 </body>
 
-    
 </html>
