@@ -14,26 +14,54 @@
 
 <body>
 
-    <!-- ENCABEZADO -->
+    <!-- =========================================
+         ENCABEZADO
+    ========================================== -->
     <header>
+
         <h1>MapaEdu Chile</h1>
-        <p>Encuentra recursos educativos disponibles en Chile</p>
+
+        <p>
+            Encuentra recursos educativos disponibles en Chile
+        </p>
+
     </header>
 
 
-    <!-- CONTENIDO PRINCIPAL -->
+    <!-- =========================================
+         CONTENIDO PRINCIPAL
+    ========================================== -->
     <main class="contenedor">
 
-        <h2>Recursos educativos disponibles</h2>
+
+        <!-- =========================================
+             TÍTULO Y BOTÓN AGREGAR
+        ========================================== -->
+        <div class="encabezado-recursos">
+
+            <h2>
+                Recursos educativos disponibles
+            </h2>
+
+            <a
+                href="{% url 'agregar_recurso' %}"
+                class="btn-agregar"
+            >
+                + Agregar recurso
+            </a>
+
+        </div>
 
 
-        <!-- BUSCADOR -->
+        <!-- =========================================
+             BUSCADOR
+        ========================================== -->
         <form method="GET" class="form-busqueda">
 
             <input
                 type="text"
                 name="busqueda"
-                placeholder="Buscar por comuna..."
+                placeholder="Buscar por nombre, comuna, región o categoría..."
                 value="{{ busqueda|default:'' }}"
             >
 
@@ -44,13 +72,18 @@
         </form>
 
 
-        <!-- LISTA DE RECURSOS -->
+        <!-- =========================================
+             LISTA DE RECURSOS
+        ========================================== -->
         {% for recurso in recursos %}
 
             <div class="recurso">
 
+
                 <!-- NOMBRE -->
-                <h3>{{ recurso.nombre }}</h3>
+                <h3>
+                    {{ recurso.nombre }}
+                </h3>
 
 
                 <!-- DESCRIPCIÓN -->
@@ -63,7 +96,7 @@
                 <!-- REGIÓN -->
                 <p>
                     <strong>Región:</strong>
-                    {{ recurso.region }}
+                    {{ recurso.comuna.region }}
                 </p>
 
 
@@ -81,24 +114,60 @@
                 </p>
 
 
-                <!-- GRATUITO -->
-                {% if recurso.gratuito %}
+                <!-- DIRECCIÓN -->
+                {% if recurso.direccion %}
 
                     <p>
-                        <strong>Gratuito:</strong> Sí
-                    </p>
-
-                {% else %}
-
-                    <p>
-                        <strong>Gratuito:</strong> No
+                        <strong>Dirección:</strong>
+                        {{ recurso.direccion }}
                     </p>
 
                 {% endif %}
 
 
-                <!-- BOTONES -->
+                <!-- SITIO WEB -->
+                {% if recurso.sitio_web %}
+
+                    <p>
+
+                        <strong>Sitio web:</strong>
+
+                        <a
+                            href="{{ recurso.sitio_web }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Visitar sitio
+                        </a>
+
+                    </p>
+
+                {% endif %}
+
+
+                <!-- GRATUITO -->
+                {% if recurso.gratuito %}
+
+                    <p>
+                        <strong>Gratuito:</strong>
+                        Sí
+                    </p>
+
+                {% else %}
+
+                    <p>
+                        <strong>Gratuito:</strong>
+                        No
+                    </p>
+
+                {% endif %}
+
+
+                <!-- =========================================
+                     BOTONES
+                ========================================== -->
                 <div class="acciones">
+
 
                     <!-- EDITAR -->
                     <a
@@ -133,11 +202,28 @@
             </div>
 
 
+        <!-- =========================================
+             SIN RESULTADOS
+        ========================================== -->
         {% empty %}
 
-            <p>No hay recursos educativos disponibles.</p>
+            {% if busqueda %}
+
+                <p>
+                    No se encontraron recursos para
+                    <strong>"{{ busqueda }}"</strong>.
+                </p>
+
+            {% else %}
+
+                <p>
+                    No hay recursos educativos disponibles.
+                </p>
+
+            {% endif %}
 
         {% endfor %}
+
 
     </main>
 

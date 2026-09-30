@@ -76,11 +76,11 @@ WSGI_APPLICATION = 'mapaEdu.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mapaEduChile',
+        'NAME': 'mapaeduchile',
         'USER': 'root',
         'PASSWORD': 'Vania_2008',
         'HOST': 'localhost',
-        'PORT': '3307',
+        'PORT': '3306',
     }
 }
 

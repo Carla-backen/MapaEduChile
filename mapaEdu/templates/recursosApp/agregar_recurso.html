@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Editar recurso</title>
+    <title>Agregar recurso</title>
 
     <link rel="stylesheet" href="{% static 'recursosApp/css/estilos.css' %}">
 </head>
@@ -17,53 +17,48 @@
     <main class="contenedor">
 
         <h1 class="titulo-editar">
-            Editar recurso educativo
+            Agregar recurso educativo
         </h1>
 
         <form method="POST" class="form-editar">
 
             {% csrf_token %}
 
+
             <!-- NOMBRE -->
-            <label for="nombre">Nombre:</label>
+            <label for="nombre">
+                Nombre:
+            </label>
 
             <input
                 class="campo-formulario"
                 type="text"
                 id="nombre"
                 name="nombre"
-                value="{{ recurso.nombre }}"
+                placeholder="Ej: Biblioteca Municipal"
                 required
             >
 
 
             <!-- DESCRIPCIÓN -->
-            <label for="descripcion">Descripción:</label>
+            <label for="descripcion">
+                Descripción:
+            </label>
 
             <input
                 class="campo-formulario"
                 type="text"
                 id="descripcion"
                 name="descripcion"
-                value="{{ recurso.descripcion }}"
+                placeholder="Describe brevemente el recurso"
                 required
             >
 
 
-            <!-- REGIÓN -->
-            <label for="region">Región:</label>
-
-            <input
-                class="campo-formulario"
-                type="text"
-                id="region"
-                value="{{ recurso.comuna.region }}"
-                disabled
-            >
-
-
             <!-- COMUNA -->
-            <label for="comuna">Comuna:</label>
+            <label for="comuna">
+                Comuna:
+            </label>
 
             <select
                 class="campo-formulario"
@@ -72,15 +67,14 @@
                 required
             >
 
+                <option value="" selected disabled>
+                    Selecciona una comuna
+                </option>
+
                 {% for comuna in comunas %}
 
-                    <option
-                        value="{{ comuna.id }}"
-                        {% if comuna.id == recurso.comuna.id %}
-                            selected
-                        {% endif %}
-                    >
-                        {{ comuna.nombre }}
+                    <option value="{{ comuna.id }}">
+                        {{ comuna.nombre }} - {{ comuna.region }}
                     </option>
 
                 {% endfor %}
@@ -89,7 +83,9 @@
 
 
             <!-- CATEGORÍA -->
-            <label for="categoria">Categoría:</label>
+            <label for="categoria">
+                Categoría:
+            </label>
 
             <select
                 class="campo-formulario"
@@ -98,14 +94,13 @@
                 required
             >
 
+                <option value="" selected disabled>
+                    Selecciona una categoría
+                </option>
+
                 {% for categoria in categorias %}
 
-                    <option
-                        value="{{ categoria.id }}"
-                        {% if categoria.id == recurso.categoria.id %}
-                            selected
-                        {% endif %}
-                    >
+                    <option value="{{ categoria.id }}">
                         {{ categoria.nombre }}
                     </option>
 
@@ -115,26 +110,30 @@
 
 
             <!-- DIRECCIÓN -->
-            <label for="direccion">Dirección:</label>
+            <label for="direccion">
+                Dirección:
+            </label>
 
             <input
                 class="campo-formulario"
                 type="text"
                 id="direccion"
                 name="direccion"
-                value="{{ recurso.direccion|default:'' }}"
+                placeholder="Ej: Av. Principal 123"
             >
 
 
             <!-- SITIO WEB -->
-            <label for="sitio_web">Sitio web:</label>
+            <label for="sitio_web">
+                Sitio web:
+            </label>
 
             <input
                 class="campo-formulario"
                 type="url"
                 id="sitio_web"
                 name="sitio_web"
-                value="{{ recurso.sitio_web|default:'' }}"
+                placeholder="https://www.ejemplo.cl"
             >
 
 
@@ -145,9 +144,6 @@
                     type="checkbox"
                     id="gratuito"
                     name="gratuito"
-                    {% if recurso.gratuito %}
-                        checked
-                    {% endif %}
                 >
 
                 <label for="gratuito">
@@ -159,7 +155,7 @@
 
             <!-- GUARDAR -->
             <button type="submit">
-                Guardar cambios
+                Guardar recurso
             </button>
 
 
